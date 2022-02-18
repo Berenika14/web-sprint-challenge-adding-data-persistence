@@ -3,7 +3,13 @@ const express = require("express");
 const Tasks = require("./task-model");
 
 const router = express.Router();
-router.get("/", (req, res, next) => {});
+router.get("/", (req, res, next) => {
+  Tasks.getAll()
+    .then((tasks) => {
+      res.status(200).json(tasks);
+    })
+    .catch(next);
+});
 
 router.post("/", (req, res, next) => {
   const { task_description, project_id } = req.body;

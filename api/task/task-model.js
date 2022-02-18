@@ -10,6 +10,8 @@ const getAll = () => {
   // tasks as t
   // join projects as p on t.project_id = p.project_id
   return db("tasks").then((tasks) => tasks.map(mapTasks));
+  // .join("project as p", "p.project_name", "p.project_description")
+  // .select("tasks.*", "p.project_name", "p.project_description");
 };
 
 const getById = (task_id) => {

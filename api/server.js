@@ -3,12 +3,14 @@
 const express = require("express");
 const ProjectRouter = require("./project/project-router");
 const ResourcesRouter = require("./resource/resource-router");
+const TaskRouter = require("./task/task-router");
 
 const server = express();
 
 server.use(express.json());
 server.use("/api/projects", ProjectRouter);
 server.use("/api/resources", ResourcesRouter);
+server.use("/api/tasks", TaskRouter);
 
 server.use("*", (req, res) => {
   res.status(200).json("Getting all API 😁");

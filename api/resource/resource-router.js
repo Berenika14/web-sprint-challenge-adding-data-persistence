@@ -1,27 +1,26 @@
-// build your `/api/projects` router here
-
+// build your `/api/resources` router here
 const express = require("express");
 
-const Projects = require("./project-model");
+const Resources = require("./resource-model");
 
 const router = express.Router();
 
 router.post("/", async (req, res, next) => {
-  const { project_name } = req.body;
-  if (!project_name) {
-    return res.status(404).json("Project name is a required missing field");
+  const { resource_name } = req.body;
+  if (!resource_name) {
+    return res.status(404).json("The name you entered already exists");
   } else {
-    Projects.create(req.body)
-      .then((newProject) => {
-        res.status(201).json(newProject);
+    Resources.create(req.body)
+      .then((newResource) => {
+        res.status(201).json(newResource);
       })
       .catch(next);
   }
 });
 router.get("/", async (req, res, next) => {
-  Projects.getAll()
-    .then((projects) => {
-      res.status(200).json(projects);
+  Resources.getAll()
+    .then((resources) => {
+      res.status(200).json(resources);
     })
     .catch(next);
 });
